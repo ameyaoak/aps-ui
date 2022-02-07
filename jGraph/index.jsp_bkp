@@ -1,0 +1,191 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<script src="jquery-1.10.1.min.js"></script> 
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="jquery.ptTimeSelect.js"></script>
+<link rel="stylesheet" href="jquery.ptTimeSelect.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+
+<script src="highcharts.js"></script>
+<script src="exporting.js"></script> 
+<script type="text/javascript">
+
+
+var chart;
+
+$(function () {
+	var data1,data2,data3,data4,data5;
+	var allData,arr;
+	 
+	 /* $.ajax({ 
+        type: "GET",
+        url: "DataProvider",  
+        async: false,
+        success : function(data){  
+        	var result = data; 
+        	allData=result;
+        	console.log(allData);
+        } 
+      });  */  
+      Highcharts.setOptions({
+          global: { 
+              timezoneOffset: -330    
+          }
+      });
+      
+      $( "#timeFrom" ).datepicker({  
+          numberOfMonths: 1,
+          onClose: function( selectedDate ) {
+            $( "#timeTo" ).datepicker( "option", "minDate", selectedDate );
+          }
+        });
+        $( "#timeTo" ).datepicker({  
+          numberOfMonths: 1,
+          onClose: function( selectedDate ) {
+            $( "#timeFrom" ).datepicker( "option", "maxDate", selectedDate );
+          }
+        });
+        $("#hourFrom").timepicker();
+        $("#hourTo").timepicker(); 
+	  $("#Plot").click(function(e){
+         
+       $.ajax({type: "GET", 
+               url: "DataProvider",
+               async: false,
+               data: { ft : $("#temp").val(), ot : $("#otemp").val(),mv : $("#mv").val(),timeFrom :$("#timeFrom").val() ,timeTo :$("#timeTo").val(),hoursFrom :$("#hourFrom").val() ,hoursTo :$("#hourTo").val() ,monitor :$("#monitor").val()  },
+               success:function(data){
+            	   var result = data; 
+               	allData=result;
+               },
+               error: function(xhr, status, error) {
+                   alert("ERROR : NO DATA FOUND FOR INPUT");
+               }
+               });
+        
+       arr=allData.split(";");   
+       chart = $('#container').highcharts();
+       
+       console.log("li1"+arr[0]);
+       console.log("li12"+arr[1]); 
+       console.log(arr[2]);
+       
+       chart.series[0].setData(JSON.parse(arr[0]));
+       chart.series[1].setData(JSON.parse(arr[1]));
+       chart.series[2].setData(JSON.parse(arr[2])); 
+         
+	     }); 
+	  
+	  
+	 
+	 $('#container').highcharts({
+                    	chart: {
+                            zoomType: 'x'
+                        },
+                         
+                        title: { 
+                            text: 'Time Temprature Mv Graph'
+                        },  
+                        tooltip: {
+                            shared: true,
+                            crosshairs: true
+                        },
+                        xAxis: { 
+                            type: 'datetime',
+                            gridLineWidth: 1
+                             
+                        },
+                        yAxis: [{ // Primary yAxis
+                            labels: {
+                                format: '<b>{value}°C</b>',
+                                style: {
+                                   // color: Highcharts.getOptions().colors[5]
+                                }
+                            },
+                            title: {
+                                text: '<b>Temperature</b>',
+                                style: {
+                                   // color: Highcharts.getOptions().colors[5]
+                                }
+                            }
+                        }, { // Secondary yAxis
+                            title: {
+                                text: '<b>Mv/% CP</b>',
+                                style: {
+                                 //  color: Highcharts.getOptions().colors[5]
+                                }
+                            },
+                            labels: {
+                                format: '<b>{value} mv</b>',
+                                style: {
+                                   // color: Highcharts.getOptions().colors[5]
+                                }
+                            },
+                            opposite: true
+                        }],
+                        exporting: {
+                            sourceWidth: 1600,
+                            sourceHeight: 400, 
+                        },
+                        
+                        plotOptions: {
+                            line: {
+                                dataLabels: {
+                                    enabled: true
+                                } 
+                            }
+                        },
+                        series: [{
+                             name: 'Furnace Temprature', 
+                             color: Highcharts.getOptions().colors[5],
+                            data: []
+                        }, {
+                             name: 'Mv/% CP',
+                             yAxis: 1,
+                             color: Highcharts.getOptions().colors[6],
+                            data:[] 
+                        },{
+                             name: 'Oil Temprature',
+                             color: Highcharts.getOptions().colors[7],
+                            data:[] 
+                        },
+                        ]
+                        
+                       
+                    }); 
+                     
+	  
+                });
+</script>
+</head>
+<body>
+
+
+<div id="container" style="min-width: 1900px; height: 400px; margin: 0 auto"></div>
+
+<form method="post">
+<table>
+<tr><td>Time From : </td><td><input id="timeFrom" size="10" maxlength="10"><input id="hourFrom" size="5" maxlength="5"></td></tr>
+<tr><td>Time To : </td><td><input id="timeTo" size="10" maxlength="10"><input id="hourTo" size="5" maxlength="5"></td></tr>
+<tr><td>Furnace Temprature : </td><td><input placeholder="PV1" id="temp" size="3" maxlength="3"> </td></tr>
+<tr><td>Oil Temprature : </td><td><input placeholder="SV1" id="otemp" size="3" maxlength="3">  </td></tr>
+<tr><td>Milli Volt /% CP :  </td><td><input  placeholder="PV2" id="mv" size="3" maxlength="3"> </td></tr> 
+<tr><td>Id : </td><td><input id="bid" size="10" maxlength="10"></td></tr>
+<tr><td>Monitor :  </td><td>
+<select id=monitor>
+<option value="Monitor1">Monitor1</option>
+<option value="Monitor2">Monitor2</option>
+<option value="Monitor3">Monitor3</option>
+</select>
+</td></tr>  
+<tr><td><input type="button" id="Plot" value="Draw"></td></tr>
+</table>
+</form>
+</body>
+</html>
