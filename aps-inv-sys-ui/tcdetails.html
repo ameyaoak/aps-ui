@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-bordered table-condensed table-striped" ng-show="inv.tcGrid.length">
+            <thead>
+            <tr>
+                <th style="width: 10%;">
+                    Particulars
+                </th>
+                <th style="width: 5%;">
+                    Qty
+                </th>
+                <th style="width: 40%;">
+                    Specification
+                </th>
+                <th style="width: 30%;">
+                    Observations
+                </th>
+                <th style="width: 10%;">
+                    Remarks
+                </th>
+
+            </thead>
+            <tbody>
+
+            <tr ng-repeat="data in inv.tcGrid">
+                <td class="text-left">{{data.particulars}}</td>
+                <td class="text-center">{{data.qtyChecked}}</td>
+                <td class="text-left">{{data.specifications}}</td>
+                <td class="text-left">{{data.observations}}</td>
+                <td class="text-left">{{data.remarks}}</td>
+
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" ng-app="plunker">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Test Certificate</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.angularjs.org/1.2.28/angular.js"></script>
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script src="app.js"></script>
+</head>
+
+<body>
+  <form class="form-horizontal">
+    <div class="form-group">
+        <label for="invoiceNo" class="control-label col-xs-2">Invoice</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="invoiceNo"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="date" class="control-label col-xs-2">Date</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="date"  >
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="component" class="control-label col-xs-2">Component</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="component"  >
+       </div>
+        </div>
+    </div>
+      <div class="form-group">
+      <label for="material" class="control-label col-xs-2">Material</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="material"  >
+       </div>
+        </div>
+    </div> 
+     <div class="form-group">
+        <label for="partNo" class="control-label col-xs-2">Part No</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="partNo"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="process" class="control-label col-xs-2">Process</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="process"   >
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="heatCode" class="control-label col-xs-2">Heat Code</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="heatCode"  >
+       </div>
+        </div>
+    </div>
+      <div class="form-group">
+      <label for="furnace" class="control-label col-xs-2">Furnace</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="furnace"   >
+       </div>
+        </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    <div class="form-group">
+        <label for="batchNo" class="control-label col-xs-2">Batch No</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="batchNo"  >
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="batchId" class="control-label col-xs-2">Batch Id</label>
+        <div class="col-xs-4">
+            <input type="text" class="form-control" id="batchId"   >
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="poNo" class="control-label col-xs-2">PO No</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="poNo"  >
+       </div>
+        </div>
+    </div>
+      <div class="form-group">
+      <label for="poDate" class="control-label col-xs-2">PO Date</label>
+        <div class="col-xs-4">
+            <div class="checkbox">
+               <input type="text" class="form-control" id="poDate"   >
+       </div>
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+    </div>
+    
+</form>
+  <div id="inputJsonData" ng-controller="MainCtrl">  
+      <form>  
+      <table> 
+        
+        
+
+
+      <!--
+        <tr><td>Total : </td><td><input style="width:40%;" name="finalTotal" placeholder="6546">
+        <tr><td> Words : </td><td><input  style="width:40%;" name="finalTotalWords" placeholder="six thousand five hundred and fourty six">
+         <tr><td></td><td><input  style="width:40%;" name="partyName" placeholder="APS HEAT TREATERS">
+        <tr><td></td><td><input style="width:40%;" name="partyAddress" placeholder="Gat no. 263 , Post Pirangut , Tal. Mulshi , Dist. Pune 412115">
+        <tr><td></td><td><input style="width:40%;" name="partyMob" placeholder="020-66524944">
+        <tr><td></td><td><input style="width:40%;" name="partyMail" placeholder="apsheat@gmail.com">
+        <tr><td></td><td><input style="width:40%;" name="invoiceWorker" placeholder="login">
+
+
+
+
+        <input name="particulars" ng-model="tcDetails.particulars">
+        <input name="specifications" ng-model="tcDetails.specs">
+        <input name="qtyChecked" ng-model="tcDetails.qtyChecked">
+        <input name="remarks" ng-model="tcDetails.remark">
+        <input name="observations" ng-model="tcDetails.observations">
+        <input name="mm" ng-model="microGrid.mm">
+        <input name="cut" ng-model="microGrid.cut">
+        <input name="hv" ng-model="microGrid.hv">
+
+
+        <input name="microPic" placeholder="http://img3.bagit.in/0//images/product/00/00/00/03/04/28/30428/SanDisk-Micro-SD-Memory-Card-Mobile-Ultra-32-GB-Class-10-01.jpg">
+        <input name="microGraph" placeholder="http://www.clipart-box.com/zoom/diagram-graph120404.jpg">
+        <input name="microLoad" placeholder="34">  -->
+        </table>
+      </form>
+      
+    </div>
+</body>
+
+</html>

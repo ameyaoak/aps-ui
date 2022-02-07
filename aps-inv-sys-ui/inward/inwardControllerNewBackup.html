@@ -1,0 +1,189 @@
+angular.module('inwardModule', ['toastr' ])
+.controller('inwardController', function(toastr,$scope,$http) {
+$scope.inward_fromdata="http://localhost:8080/inward/displayAll";
+$scope.inward_headers="Date,Inward No, Party, Component,Material,Part No,Process,Qty Kg,Qty No,Rate Kg,Rate No";
+$scope.inward_fields="creationDate,inwardNo,party,component,material,partNo,process,qtyKgs,qtyNos,rateKg,rateNos";
+$scope.inward_button1="Invoice";
+
+
+
+$scope.ok = function() {
+
+var selectedRec = $scope.report.selected;
+var actualRec;
+
+
+//checkSimailarTypeForBulkDispatch(selectedRec);
+
+//getActualSelectedRecord(selectedRec)
+
+if(_.isEqual(selectedRec.length,1)){
+compareWithActualSelectedRecord(selectedRec[0]);
+
+}
+
+//updateDataForSelectedRow(selectedRec);
+//insertRecordInInvoice(selectedRec);
+};
+
+
+
+compareWithActualSelectedRecord = function(selectedRec)
+{
+
+var id = selectedRec.inwardNo;
+var url = 'http://localhost:8080/inward/'+id
+$http.get(url)
+.success(function(data) {
+if(selectedRec.qtyKgs<= data.qtyKgs && selectedRec.qtyNos<=data.qtyNos){
+insertRecordInInvoiceAsSingle(selectedRec)
+
+toastr.success('Update Success');
+}
+//$scope.parties[id-1]=data;
+}).error(function(data){
+toastr.error("Cannot Update");
+});
+
+};
+
+
+//checkSimailarTypeForBulkDispatch = function(selectedRec) {
+//    if(_.isEqual(selectedRec.length,1)){
+//        insertRecordInInvoiceAsSingle(selectedRec[0]);
+//    }
+//    else {
+//        var recordMergedToInvoice=checkIfCanBeInvoiced(selectedRec);
+//        if (_.isNull(recordMergedToInvoice) || _.isEqual(recordMergedToInvoice,false)) {
+//            toastr.error('Cannot invoice records from different inwards');
+//        }
+//        else {
+//            console.log(recordMergedToInvoice);
+//            toastr.success('Invoiced togeather qtyKgs=' + recordMergedToInvoice.qtyKgs + ' and qtyNos=' + recordMergedToInvoice.qtyNos);
+//            insertRecordInInvoiceAsSingle(recordMergedToInvoice);
+//        }
+//    }
+//};
+
+
+insertRecordInInvoice = function(selectedRec) {
+if(_.isEqual(selectedRec.length,1)){
+insertRecordInInvoiceAsSingle(selectedRec[0]);
+}
+else {
+var recordMergedToInvoice=checkIfCanBeInvoiced(selectedRec);
+if (_.isNull(recordMergedToInvoice) || _.isEqual(recordMergedToInvoice,false)) {
+toastr.error('Cannot invoice records from different inwards');
+}
+else {
+console.log(recordMergedToInvoice);
+toastr.success('Invoiced togeather qtyKgs=' + recordMergedToInvoice.qtyKgs + ' and qtyNos=' + recordMergedToInvoice.qtyNos);
+insertRecordInInvoiceAsSingle(recordMergedToInvoice);
+}
+}
+};
+
+checkIfCanBeInvoiced = function(record) {
+var componentToCompare = record[0].component;
+var partyToCompare = record[0].party;
+var materialToCompare = record[0].material;
+var partNoToCompare = record[0].partNo;
+var processToCompare = record[0].process;
+var rateKgToCompare = record[0].rateKg;
+var rateNosToCompare = record[0].rateNos;
+
+var recordMergedToInvoice = _.clone(record[0]);
+var totalQtyKgForInvoice = 0;
+var totalQtyNosForInvoice = 0;
+
+_.each(record,function(rec){
+if(_.isEqual(partyToCompare,rec.party)==true &&
+_.isEqual(componentToCompare,rec.component)==true &&
+_.isEqual(materialToCompare,rec.material)==true &&
+_.isEqual(partNoToCompare,rec.partNo)==true &&
+_.isEqual(rateKgToCompare,rec.rateKg)==true &&
+_.isEqual(rateNosToCompare,rec.rateNos)==true &&
+_.isEqual(processToCompare,rec.process)==true){
+
+totalQtyKgForInvoice+=rec.qtyKgs;
+totalQtyNosForInvoice+=rec.qtyNos;
+recordMergedToInvoice.qtyKgs = totalQtyKgForInvoice;
+recordMergedToInvoice.qtyNos = totalQtyNosForInvoice;
+
+}
+else
+{
+return false;
+}
+});
+return recordMergedToInvoice;
+};
+
+updateDataGrid = function() {
+var url = 'http://localhost:8080/inward/displayAll';
+$http.get(url)
+.success(function(data) {//delete if success
+$scope.exportDataVariable = data;
+}).error(function(data){
+});
+};
+
+updateDataForSelectedRow = function(record) {
+_.each(record,function(rec){
+var inwardNo=rec.inwardNo;
+var url = 'http://localhost:8080/inward/';
+$http.put(url,rec)
+.success(function(data) {//delete if success
+updateDataGrid();
+toastr.success('Update Success');
+$scope.report.selected=[];
+}).error(function(data){//dont if no success
+updateDataGrid();
+toastr.error("Cannot Update : Error in quantity entered for inward : "+inwardNo);
+$scope.report.selected=[];
+});
+});
+};
+
+deleteRow = function(rec) {
+var index = -1;
+for (var i = 0; i < rec.length; i++) {
+index = $scope.exportDataVariable.indexOf(rec[i]);
+if (index > -1)
+updateDataForSelectedRow(rec[index]);
+$scope.exportDataVariable.splice(index, 1);
+}
+};
+
+
+insertRecordInInvoiceAsSingle = function(rec) {
+console.log("rec : "+rec);
+var invoiceRecord = {};
+invoiceRecord.party=rec.party;
+invoiceRecord.component=rec.component;
+invoiceRecord.material = rec.material;
+invoiceRecord.inwardNo=rec.inwardNo;
+invoiceRecord.qtyKgs=rec.qtyKgs;
+invoiceRecord.qtyNos=rec.qtyNos;
+invoiceRecord.rateKg=rec.rateKg;
+invoiceRecord.rateNos=rec.rateNos;
+invoiceRecord.total = rec.qtyKgs * rec.rateKg + rec.qtyNos * rec.rateNos;
+
+var url="http://localhost:8080/dispatch";
+$http.post(url,rec)
+.success(function(data) {//delete if success
+updateDataGrid();
+toastr.success('Update Success');
+$scope.report.selected=[];
+}).error(function(data){//dont if no success
+updateDataGrid();
+toastr.error("Cannot Update : Error in quantity entered for inward : "+rec.inwardNo);
+$scope.report.selected=[];
+});
+};
+
+$scope.clear = function(selectedRecord) {
+$scope.report.selected=[]
+};
+
+})

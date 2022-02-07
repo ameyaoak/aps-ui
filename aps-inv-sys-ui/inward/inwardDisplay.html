@@ -1,0 +1,55 @@
+<div ng-if="$root.user == 'aps'">
+  <button ng-click="ok()" class="btn btn-primary">{{inward_button1}}</button>
+  <button ng-click="clear()" class="btn right btn-default">Clear</button>
+  <a href="#new" class="btn btn-link">New</a>
+
+</div>
+<div><h4>Inward Details</h4></div>
+  <div>
+    <table object-table=""
+           from-url={{inward_fromdata}}
+           data="exportDataVariable" display="30"
+           headers={{inward_headers}}
+           fields={{inward_fields}}
+           sorting="compound"
+           editable="false" resize="true"
+           drag-columns="true"
+           selected-model="report.selected"
+           select="single"
+           resize="true">
+      <tbody>
+      <tr>
+        <td>{{item.creationDate}}</td>
+        <td>{{item.inwardNo}}</td>
+        <td>{{item.party}}</td>
+        <td>{{item.partyDc}}</td>
+          <td>{{item.partyDate}}</td>
+        <td>{{item.component}}</td>
+        <td>{{item.material}}</td>
+        <td>{{item.partNo}}</td>
+        <td>{{item.process}}</td>
+        
+        <td>{{item.coreHd}}</td>
+        <td>{{item.surfaceHd}}</td>
+        <td>{{item.caseDepth}}</td>
+         <td>{{item.micro}}</td>
+        <td>{{item.distortation}}</td>
+        <td>{{item.layerThickness}}</td>
+        <td>{{item.apperance}}</td>
+       
+        
+        <td>{{item.asQuenchHd}}</td>
+        <td>{{item.hdAfterTempering}}</td>
+        <td>{{item.partialDecarb}}</td>
+         <td>{{item.wtt}}</td>
+        
+        <td type="number" editable style="background-color:yellow;">{{item.qtyKgs}}</td>
+        <td editable style="background-color:yellow;">{{item.qtyNos}}</td>
+        <td>{{item.rateKg}}</td>
+        <td>{{item.rateNos}}</td>
+        <td>{{item.remark}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  

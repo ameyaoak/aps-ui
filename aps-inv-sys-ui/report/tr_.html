@@ -1,0 +1,206 @@
+
+<div id="tc">
+    <div ng-controller="MainCtrl">
+        <!--<div class="btn primary large no-print">Hello {{name}}!</div>-->
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-8">
+                    <h3>
+                        <img src="http://www.indiacom.com/bp/aps-heat-treaters_in_pune/logo.gif"
+                             style="width:70px;height:30px;">
+                        APS HEAT TREATERS
+                    </h3> Gat no. 263, Post Pirangut, Tal. Mulshi, Dist. Pune 412115
+                    <br>Phone-020-66524944 | E-Mail : apsheat@gmail.com
+
+                </div>
+                <div class="col-xs-4 text-right">
+                    <h3> TEST REPORT</h3> Invoice <big>#{{inv.invoiceNo}}</big>
+                    <br>Date : {{inv.date}}
+
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <big> Component Details</big>
+
+                        </div>
+                        <div class="panel-body">
+
+                            <table>
+                                <tr>
+                                    <td>Party: {{inv.partyName}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Component: {{inv.component}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Part No: {{inv.partNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Material: {{inv.material}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Batch Id: {{inv.batchId}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Qty Nos: {{inv.qtyNosTC}}</td>
+                                    <td>Qty Kgs: {{inv.kgsNosTC}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Inspected By: {{inv.invoiceWorker}}</td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6  text-left">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <big> Process Details</big>
+
+                        </div>
+                        <div class="panel-body">
+                            <table>
+                                <tr>
+                                    <td>Ref Std. / WI /TDS No: {{inv.tdsNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Heat Code/RC No: {{inv.heatCode}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Furnace Batch No: {{inv.batchNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Furnace : {{inv.furnace}}</td>
+                                </tr>
+                                <tr>
+                                    <td>APS DC No:{{inv.apsDCNo}}</td>
+                                </tr>
+                                <tr>
+                                    <td>APS DC Date: {{inv.apsDCDate}}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Approved By: {{inv.invoiceWorker}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- / end client details section -->
+            <div class="row">
+                <div class="col-xs-12">
+                    <table class="table table-bordered table-condensed table-striped" ng-show="inv.tcGrid.length">
+                        <thead>
+                        <tr>
+                            <th style="width: 10%;">
+                                Particulars
+                            </th>
+                            <th style="width: 5%;">
+                                Test Location
+                            </th>
+                            <th style="width: 40%;">
+                                Test Method
+                            </th>
+                            <th style="width: 5%;">
+                                Qty
+                            </th>
+                            <th style="width: 40%;">
+                                Specification
+                            </th>
+                            <th style="width: 30%;">
+                                Observations
+                            </th>
+                            <th style="width: 10%;">
+                                Remarks
+                            </th>
+
+                        </thead>
+                        <tbody>
+
+                        <tr ng-repeat="data in inv.tcGrid">
+                            <td class="text-left">{{data.particulars}}</td>
+                            <td class="text-left">{{data.testLocation}}</td>
+                            <td class="text-left">{{data.testmethod}}</td>
+                            <td class="text-center">{{data.qtyChecked}}</td>
+                            <td class="text-left">{{data.actual}}</td>
+                            <td class="text-left">{{data.observations}}</td>
+                            <td class="text-left">{{data.remarks}}</td>
+
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-xs-12 text-left">
+
+                    <div style="float:left;">
+                        <!-- Case Depth by Zwick make Microhardness Tester-->
+                        <div class="empty " file-dropzone="[image/png, image/jpeg, image/gif]" file="image"
+                             file-name="imageFileName" data-max-file-size="3">
+                            Micro Photo
+                        </div>
+
+
+                        <div class="image-container">
+                            <img class="microPic" ng-src={{image}}/>{{imageFileName}}
+                            <span class="file-name">{{imageFileName}}</span>
+                        </div>
+                        400X 2% Nital
+                    </div>
+                    <div style="float:right;">
+                        <chart config="chartConfig"></chart>
+                    </div>
+                    <!-- <div ng-hide={{inv.microPic}}>
+                            <div class="image-container">
+                              <img class="microPic" ng-src={{image}} />
+                              <span class="file-name">{{imageFileName}}</span>
+
+                          <div ng-hide="{{image}}">
+                            <img class="microPic" src={{inv.microPic}}>
+                          </div>-->
+
+                    <!-- <img class="microGraph" src={{inv.microGraph}}>-->
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td>Load</td>
+                            <th>MM</th>
+                            <td ng-repeat="mmData in inv.microGrid.mm track by $index">{{mmData}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{inv.microLoad}}</td>
+                            <th>HV</th>
+                            <td ng-repeat="hvData in inv.microGrid.hv track by $index">{{hvData}}</td>
+                        </tr>
+                        <tr>
+                            <td>{{inv.microLoad}}</td>
+                            <th>Cut</th>
+                            <td ng-repeat="cutData in inv.microGrid.cut track by $index">{{cutData}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="text-center"><big>Final Disposition : Lot is accepted / Conditionally accepted / Rejected</big>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="javascript:window.print()" class="btn primary large no-print">
+        Print</a>
+</div>

@@ -1,0 +1,26 @@
+<div> 
+ <div> 
+ 
+ {{component.selectedOption}}
+  <button ng-click="ok()">Ok</button>
+  <button ng-click="clear()">Clear</button>  
+ 
+  
+   
+ </div> 
+ <table object-table="" 
+  from-url={{fromUrl}} 
+  data="exportDataVariable" display="10" 
+  headers="Particulars,Specifications,Qty Checked,Remarks,Observations" 
+  fields="particulars,specifications,qtyChecked,remarks,observations"   
+  editable="true" resize="true" 
+  drag-columns="true" 
+  search="false"
+   sorting="false"
+   > 
+    
+  </table>
+  
+  
+  </div>
+   

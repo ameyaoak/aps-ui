@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!-- define angular app --> 
+<html ng-app="apsApp">
+ 
+  <!-- define angular app -->
+  <!-- define angular app --> 
+  <!-- define angular app --> 
+  <head>
+
+
+      <!-- SCROLLS -->
+      <link rel="stylesheet" href="externalFiles/bootstrap.min.css" />
+      <link rel="stylesheet" href="externalFiles/font-awesome.css" />
+      <link rel="stylesheet" href="externalFiles/nv.d3.css" />
+      <link rel="stylesheet" href="object-table-style.css" />
+      <link rel="stylesheet" href="externalFiles/angular-toastr.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <!-- SPELLS -->
+
+
+    <!-- SCROLLS -->
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />-->
+    <!--<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />-->
+     <!--<link data-require="nvd3@1.1.14-beta" data-semver="1.1.14-beta" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.css" />-->
+     <!--<link rel="stylesheet" href="object-table-style.css" />-->
+      <!--<link rel="stylesheet" href="https://npmcdn.com/angular-toastr/dist/angular-toastr.css" />-->
+      <!--<link rel="stylesheet" href="css/style.css" />-->
+    <!-- SPELLS -->
+
+      <script src="externalFiles/angular.min.js"></script>
+    <script src="externalFiles/angular-route.js"></script>
+    <script src="externalFiles/jquery-2.1.4.min.js"></script>
+    <script src="externalFiles/angular-animate.js"></script>
+    <script src="externalFiles/ui-bootstrap-tpls-0.13.4.js"></script>
+   <script src="externalFiles/d3.min.js"></script>
+    <script src="externalFiles/nv.d3.js"></script>
+      <script src="externalFiles/angularjs-nvd3-directives.js"></script>
+      <script src="externalFiles/underscore-min.js"></script>
+      <script src="externalFiles/angular-toastr.tpls.js"></script>
+      <script src="externalFiles/highcharts.js"></script>
+      <!--<script src="image.js"></script>-->
+
+
+      <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>-->
+      <!--<script data-require="angular-route@*" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular-route.js"></script>-->
+      <!--<script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+      <!--<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-animate.js"></script>-->
+      <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.4.js"></script>-->
+      <!--<script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>-->
+      <!--<script data-require="nvd3@1.1.14-beta" data-semver="1.1.14-beta" src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.14-beta/nv.d3.js"></script>-->
+      <!--<script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdn.jsdelivr.net/angularjs.nvd3-directives/v0.0.7/angularjs-nvd3-directives.js"></script>-->
+      <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>-->
+      <!--<script src="https://npmcdn.com/angular-toastr/dist/angular-toastr.tpls.js"></script>-->
+      <!--<script data-require="highcharts@*" data-semver="2.3.5" src="//cdnjs.cloudflare.com/ajax/libs/highcharts/2.3.5/highcharts.js"></script>-->
+
+
+      <script src="object-table.js"></script>
+      <script src="underScoreFactory.js"></script>
+      <script src="chart/chartController.js"></script>
+   <script src="component/componentController.js"></script>
+   <script src="party/partyController.js"></script>
+      <script src="dispatch/dispatchController.js"></script>
+      <script src="invoice/invoiceController.js"></script>
+      <script src="inward/inwardController.js"></script>
+      <script src="inward/newInwardController.js"></script>
+      <script src="inward/newTcController.js"></script>
+     <script src="login/loginController.js"></script>
+      <script src="tcTable/tcController.js"></script>
+      <script src="chart/chartDirective.js"></script>
+      <script src="chart/dashboardController.js"></script>
+      <script src="report/mainController.js"></script>
+    <script src="route.js"></script>
+  </head> 
+
+  <!-- define angular controller -->
+  <body ng-controller="mainController">
+   <nav class="navbar navbar-default bg-faded"  role="navigation" bs-navbar>
+  <div class="navbar-header">
+    <div class="navbar-brand">  </div>
+  </div>
+   <ul class="nav navbar-nav navbar-left">
+       <!--<li data-match-route="/new"><a href="#/new">New</a></li>-->
+     <li data-match-route="/inward"><a href="#/inward">Inward</a></li>
+    <li data-match-route="/dispatch" ng-if="$root.user == 'aps'"><a href="#/dispatch">Dispatch</a></li> 
+    <li data-match-route="/invoice" ng-if="$root.user == 'aps'"><a href="#/invoice">Invoice</a></li>
+      <!--<li data-match-route="/inv"><a href="#/inv">Inv</a></li>-->
+       <!--<li data-match-route="/tc"><a href="#/tc">TR</a></li>-->
+     <li data-match-route="/party" ng-if="$root.user == 'aps'"><a href="#/party">Party</a></li>
+      <li data-match-route="/component" ng-if="$root.user == 'aps'"><a href="#/component">Component</a></li>
+       <li data-match-route="/report" ng-if="$root.user == 'aps'"><a href="#/report">Report</a></li>
+      
+  </ul>
+  <ul class="nav navbar-nav navbar-right"> 
+     <li data-match-route="/login"><a href="#/login" data-animation="am-flip-x"> <i class="fa fa-user"></i> {{user}}</a></li>
+  </ul> 
+</nav>
+ 
+    <div id="main"> 
+      <!-- angular templating -->
+      <!-- this is where content will be injected -->
+      <div ng-view=""></div>
+    </div>
+    <footer class="text-center no-print">
+      <p>By Ameya Oak 
+    </p>  
+    
+    </footer> 
+  </body>
+
+</html>

@@ -1,0 +1,75 @@
+{
+  "invoiceNo": "100",
+  "date": "23/10/2015",
+  "component": "component",
+  "partNo": "Part No",
+  "material": "Material",
+  "heatTreatement": "Heat Treatment",
+  "heatCode": "568467646",
+  "furnace": "Furnace",
+  "batchNo": "Batch No",
+  "batchId": "Batch Id",
+  "poNo": "PO No",
+  "poDate": "PO Date",
+  "finalTotal": "6546",
+  "finalTotalWords": "six thousand five hundred and fourty six",
+  "partyName": "APS HEAT TREATERS",
+  "partyAddress": "Gat no. 263 , Post Pirangut , Tal. Mulshi , Dist. Pune 412115",
+  "partyMob": "020-66524944",
+  "partyMail": "apsheat@gmail.com",
+  "invoiceWorker": "login",
+
+  "invGrid": [{
+    "srNo": "1",
+    "inwardNo": "22",
+    "partDCNo": "124215",
+    "partyDCDate": "23/10/2015",
+    "quantity": "325",
+    "rate": "21365",
+    "amount": "235"
+  }, {
+    "srNo": "2",
+    "inwardNo": "23",
+    "partDCNo": "15",
+    "partyDCDate": "23/11/2099",
+    "quantity": "32",
+    "rate": "31",
+    "amount": "2"
+  }],
+
+  "tcGrid": [{
+    "particulars": "Microstructure",
+    "actual": "Specs",
+    "qtyChecked": "4",
+    "remarks": "Good",
+    "observations": "Good"
+  }, {
+    "particulars": "Roundness",
+    "actual": "Specs",
+    "qtyChecked": "4",
+    "remarks": "Good",
+    "observations": "Good"
+  },{
+    "particulars": "Microstructure",
+    "actual": "Specs",
+    "qtyChecked": "4",
+    "remarks": "Good",
+    "observations": "Good"
+  }, {
+    "particulars": "Roundness",
+    "actual": "Specs",
+    "qtyChecked": "4",
+    "remarks": "Good",
+    "observations": "Good"
+  }],
+  "microGrid": {
+    "mm": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+    "cut": [13,44,56,24,11,33,44,1, 32, 11, 12, 23, 15,20],
+    "hv": [11, 32, 11, 12, 23, 15, 50,13,44,56,24,11,33,44]
+  },
+
+  "microPic": "http://img3.bagit.in/0//images/product/00/00/00/03/04/28/30428/SanDisk-Micro-SD-Memory-Card-Mobile-Ultra-32-GB-Class-10-01.jpg",
+  "microGraph": "http://www.clipart-box.com/zoom/diagram-graph120404.jpg",
+  "microLoad": "34"
+
+}

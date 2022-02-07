@@ -1,0 +1,205 @@
+<div class="modal-body">
+<div class="row">
+<form class="form-horizontal" name="componentForm" novalidate>
+    <fieldset>
+        <div class="col-md-3"><legend>Component Party</legend>
+            <label class="checkbox"><input type="checkbox" ng-model="edit">Edit Component</label>
+            <span class="help-block">Select edit checkbox to edit components.</span>
+            <!--<label>Party-->
+                <!--<select name="party" id="party" ng-options="partyName for (partyId,partyName) in data" ng-model="partyId"-->
+                <!--ng-change="getComponentList(partyId)"></select></label><br/>-->
+
+            <label>Party
+                <select name="party" id="party" ng-options="party.partyName for party in data" ng-model="partyId"
+                        ng-change="getComponentList(partyId)"></select></label><br/>
+            <p ng-show="componentForm.partyId.$invalid && !componentForm.partyId.$pristine" class="help-block">Party is required.</p>
+            <label>Component
+                <select name="componentName" id="component1" ng-options="componentName.componentName for componentName in componentRecords"
+                        ng-model="selectedComponent"   ng-show="edit"/>
+                <input type="text" id="component" name="componentNameInput" ng-model="selectedComponent.componentName" ng-hide="edit"></label>
+            <p ng-show="componentForm.componentNameInput.$invalid && !componentForm.componentNameInput.$pristine" class="help-block">Component Name is required.</p>
+            <br/>
+            <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="componentForm.$invalid" ng-hide="edit">Save</button>
+            <button type="button" class="btn btn-primary" ng-click="update()" ng-disabled="componentForm.$invalid" ng-show="edit">Update</button>
+        </div>
+
+        <div class="col-md-3"><legend>Component Particulars</legend>
+            <label> Material : <input type="text"  ng-model="selectedComponent.material"></label>
+            <label> Part No : <input type="text"  ng-model="selectedComponent.partNo"></label>
+            <label> Process : <input type="text"  ng-model="selectedComponent.process"></label>
+            <label> PO No  : <input type="text"  ng-model="selectedComponent.poNo"></label>
+            <label> PO Date : <input type="text"  ng-model="selectedComponent.poDate"></label>
+            <!--<label> Version : <input type="text" ng-model="selectedComponent.version"></label>-->
+            <label> Wt/No : <input type="text" ng-model="selectedComponent.wtt"></label>
+        </div>
+
+
+        <div class="col-md-6"> <legend>Component Specifications</legend>
+            <table>
+                <tr>
+                    <th></th>
+                    <th>Specifications</th>
+                    <th>Test Location</th>
+                    <th>Test Method</th>
+                </tr>
+                <tr>
+                    <td> Surface Hd : </td><td><input type="text" ng-model="selectedComponent.surfaceHd"></td>
+                    <td><input type="text" ng-model="selectedComponent.surfaceHdTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.surfaceHdTestMethod"></td></tr>
+                <tr>
+                    <td> Core Hd : </td><td><input type="text" ng-model="selectedComponent.coreHd"></td>
+                    <td><input type="text" ng-model="selectedComponent.coreHdTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.coreHdTestMethod"></td>
+                </tr>
+                <tr>
+                    <td> Case Depth : </td><td><input type="text" ng-model="selectedComponent.caseDepth"></td>
+                    <td><input type="text" ng-model="selectedComponent.caseDepthTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.caseDepthTestMethod"></td>
+                </tr>
+                <tr>
+                    <td> Microstructure : </td><td><textarea rows="3" ng-model="selectedComponent.crack"></textarea></td>
+                    <td><textarea  rows="3" ng-model="selectedComponent.crackTestLocation"></textarea></td>
+                    <td><textarea rows="3" ng-model="selectedComponent.crackTestMethod"></textarea></td>
+                </tr>
+                <tr>
+                    <td> Distortation : </td><td><input type="text" ng-model="selectedComponent.distortation"></td>
+                    <td><input type="text" ng-model="selectedComponent.distortationTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.distortationTestMethod"></td>
+                </tr>
+            <!--<label> SF : <input type="text" ng-model="selectedComponent.sf"></label>-->
+                <tr>
+                    <td> Layer Thickness : </td><td><input type="text" ng-model="selectedComponent.layerThickness"></td>
+                    <td><input type="text" ng-model="selectedComponent.layerThicknessTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.layerThicknessTestMethod"></td>
+                </tr>
+                <tr>
+                    <td> Apperance : </td><td><input type="text" ng-model="selectedComponent.apperance"></td>
+                    <td><input type="text" ng-model="selectedComponent.apperanceTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.apperanceTestMethod"></td>
+                </tr>
+                
+                <tr>
+                    <td> As Quench Hd : </td><td><input type="text" ng-model="selectedComponent.asQuenchHd"></td>
+                    <td><input type="text" ng-model="selectedComponent.asQuenchHdTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.asQuenchHdTestMethod"></td>
+                </tr>
+                <tr>
+                    <td> Hd After Tempering : </td><td><input type="text" ng-model="selectedComponent.hdAfterTempering"></td>
+                    <td><input type="text" ng-model="selectedComponent.hdAfterTemperingTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.hdAfterTemperingTestMethod"></td>
+                </tr>
+                <tr>
+                    <td> Partial Decarb : </td><td><input type="text" ng-model="selectedComponent.partialDecarb"></td>
+                    <td><input type="text" ng-model="selectedComponent.partialDecarbTestLocation"></td>
+                    <td><input type="text" ng-model="selectedComponent.partialDecarbTestMethod"></td>
+                </tr>
+                </table>
+        </div>
+
+        <div class="col-md-3"> <legend>Component Rates</legend>
+                <label> Rate Kg : <input type="number" ng-model="selectedComponent.rateKg" required></label>
+            <p ng-show="selectedComponent.rateKg.$invalid && !selectedComponent.rateKg.$pristine" class="validation-block">Rate in Kgs is required.</p>
+                <label> Rate No : <input type="number" ng-model="selectedComponent.rateNos" required></label>
+            <p ng-show="selectedComponent.rateNos.$invalid && !selectedComponent.rateNos.$pristine" class="validation-block">rate In Nos is required.</p>
+        </div>
+
+
+    </fieldset>
+</form>
+</div>
+</div>
+
+
+
+
+<!--<div class="modal-body">-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12"><h4>Component Details</h4>-->
+  <!--<br> Party-->
+  <!--<input type="checkbox" ng-model="edit">edit component-->
+            <!--<div ng-show="edit">-->
+
+    <!--Component-->
+    <!--<select name="componentName" id="component1" ng-options="componentName for componentName in componentNames"-->
+            <!--ng-model="componentNames.selected" ng-change="getComponentDetails(componentNames.selected)"></select>-->
+  <!--</div>-->
+  <!--<div ng-hide="edit">-->
+    <!--Component-->
+    <!--<input type="text" id="component" ng-model="selectedComponent.componentName" />-->
+  <!--</div>-->
+
+<!--</div>-->
+<!--<div class="col-md-4" style="display: block;"> <h4>Component Properties</h4>-->
+  <!--<br /> Material-->
+  <!--<input type="text"  ng-model="selectedComponent.componentMaterial" />-->
+  <!--<br /> Part No-->
+  <!--<input type="text"  ng-model="selectedComponent.componentPartNo" />-->
+  <!--<br /> Process -->
+  <!--<input type="text"  ng-model="selectedComponent.componentProcess" />-->
+  <!--<br /> PO Number-->
+  <!--<input type="text"  ng-model="selectedComponent.componentPoNo" />-->
+    <!--<br /> PO Date-->
+    <!--<input type="text"  ng-model="selectedComponent.componentPoDate" />-->
+    <!--<br /> Version-->
+    <!--<input type="text" ng-model="selectedComponent.version" />-->
+<!--</div>-->
+
+    <!--<div class="col-md-4"><h4>Component Specs</h4>-->
+
+    <!--<br /> Core Hd-->
+    <!--<input type="text" ng-model="selectedComponent.coreHd" />-->
+    <!--<br /> Surface Hd-->
+    <!--<input type="text" ng-model="selectedComponent.surfaceHd" />-->
+    <!--<br /> Case Depth-->
+    <!--<input type="text" ng-model="selectedComponent.caseDepth" />-->
+    <!--<br /> Crack-->
+    <!--<input type="text" ng-model="selectedComponent.crack" />-->
+    <!--<br /> Distortation-->
+    <!--<input type="text" ng-model="selectedComponent.distortation" />-->
+
+    <!--<br /> SF-->
+    <!--<input type="text" ng-model="selectedComponent.sf" />-->
+    <!--<br /> WTT-->
+    <!--<input type="text" ng-model="selectedComponent.wtt" />-->
+    <!--<br /> Layer Thickness-->
+    <!--<input type="text" ng-model="selectedComponent.layerThickness" />-->
+    <!--<br /> Apperance-->
+    <!--<input type="text" ng-model="selectedComponent.apperance" />-->
+
+ <!--</div class="col-md-4"> <h4>Rates</h4>-->
+    <!--<br /> Rate Kg-->
+    <!--<input type="text" ng-model="selectedComponent.rateKg" />-->
+    <!--<br /> Rate No-->
+    <!--<input type="text" ng-model="selectedComponent.rateNos" />-->
+
+    <!--&lt;!&ndash;<div>&ndash;&gt;-->
+    <!--&lt;!&ndash;<tc-table from-url="http://www.mocky.io/v2/55df47436112bc6203851aab"></tc-table>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+    <!--</div>-->
+
+
+
+
+  <!-- 
+        <tr><td>Total : </td><td><input style="width:40%;" name="finalTotal" placeholder="6546">
+        <tr><td> Words : </td><td><input  style="width:40%;" name="finalTotalWords" placeholder="six thousand five hundred and fourty six">
+         
+        <tr><td></td><td><input style="width:40%;" name="invoiceWorker" placeholder="login">
+        
+      
+        
+      
+         
+        <input name="mm" ng-model="microGrid.mm">
+        <input name="cut" ng-model="microGrid.cut">
+        <input name="hv" ng-model="microGrid.hv">
+      
+      
+        <input name="microPic" placeholder="http://img3.bagit.in/0//images/product/00/00/00/03/04/28/30428/SanDisk-Micro-SD-Memory-Card-Mobile-Ultra-32-GB-Class-10-01.jpg">
+        <input name="microGraph" placeholder="http://www.clipart-box.com/zoom/diagram-graph120404.jpg">
+        <input name="microLoad" placeholder="34">  -->
+
+
+
+

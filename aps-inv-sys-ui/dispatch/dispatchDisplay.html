@@ -1,0 +1,41 @@
+<div>
+  <button ng-click="ok()" class="btn btn-primary">{{dispatch_button1}}</button>
+  <button ng-click="clear()" class="btn btn-default">Clear</button>
+</div>
+<div>
+  <h4>Dispatch Details</h4><div>
+  <div>
+    <table object-table=""
+           from-url={{dispatch_fromdata}}
+           data="exportDataVariable" display="30"
+           headers={{dispatch_headers}}
+           fields={{dispatch_fields}}
+           sorting="compound"
+           editable="false" resize="true"
+           drag-columns="true"
+           selected-model="report.selected"
+           select="single">
+      <tbody>
+      <tr>
+        <td>{{item.creationDate}}</td>
+        <td>{{item.dispatchNo}}</td>
+        <td>{{item.inwardNo}}</td>
+        <td>{{item.party}}</td>
+         <td>{{item.partyDc}}</td>
+          <td>{{item.partyDate}}</td>
+        <td>{{item.component}}</td>
+        <td>{{item.material}}</td>
+        <td>{{item.partNo}}</td>
+        <td>{{item.process}}</td> 
+        <td>{{item.qtyKgs}}</td>
+        <td>{{item.qtyNos}}</td>
+        <td>{{item.rateKg}}</td>
+        <td>{{item.rateNos}}</td> 
+         <td editable style="background-color:yellow;">{{item.total}}</td>
+       <!--  <td>{{item.total}}</td>  -->
+
+      </tr>
+      </tbody>
+
+    </table>
+  </div></div></div>

@@ -1,0 +1,125 @@
+angular.module('inwardModule', ['toastr' ])
+.controller('inwardController', function(toastr,$scope,$http) {
+  $scope.inward_fromdata="http://localhost:8080/Jersey-Spring-Hibernate/rest/inward/inwards/all";
+  $scope.inward_headers="Date,Inward No, Party, Component,Material,Part No,Process,Qty Kg,Qty No,Rate Kg,Rate No";
+  $scope.inward_fields="creationDate,inwardNo,party,component,material,partNo,process,qtyKgs,qtyNos,rateKg,rateNos";
+  $scope.inward_button1="Dispatch";
+
+
+      $scope.ok = function() {
+          var selectedRec = $scope.report.selected;
+
+
+          totalQtyKgForInvoice = 0;
+          totalQtyNosForInvoice = 0;
+
+          if(_.isEqual(selectedRec.length,1)){
+              updateDataForSelectedRow(selectedRec);
+          }
+          else {
+              var recordMergedToInvoice=checkIfCanBeInvoiced(selectedRec);
+              if (_.isNull(recordMergedToInvoice) || _.isEqual(recordMergedToInvoice,false)) {
+                  toastr.error('Cannot invoice records from different inwards');
+              }
+              else {
+                  console.log(recordMergedToInvoice);
+                  toastr.success('Invoiced togeather qtyKgs=' + recordMergedToInvoice.qtyKgs + ' and qtyNos=' + recordMergedToInvoice.qtyNos);
+                  updateDataForSelectedRow(recordMergedToInvoice);
+              }
+          }
+      };
+
+        checkIfCanBeInvoiced = function(record) {
+            var componentToCompare = record[0].component;
+            var partyToCompare = record[0].party;
+            var materialToCompare = record[0].material;
+            var partNoToCompare = record[0].partNo;
+            var processToCompare = record[0].process;
+            var rateKgToCompare = record[0].rateKg;
+            var rateNosToCompare = record[0].rateNos;
+
+            var recordMergedToInvoice = _.clone(record[0]);
+            var totalQtyKgForInvoice = 0;
+            var totalQtyNosForInvoice = 0;
+
+            _.each(record,function(rec){
+                if(_.isEqual(partyToCompare,rec.party)==true &&
+                   _.isEqual(componentToCompare,rec.component)==true &&
+                   _.isEqual(materialToCompare,rec.material)==true &&
+                   _.isEqual(partNoToCompare,rec.partNo)==true &&
+                   _.isEqual(rateKgToCompare,rec.rateKg)==true &&
+                   _.isEqual(rateNosToCompare,rec.rateNos)==true &&
+                   _.isEqual(processToCompare,rec.process)==true){
+
+                    totalQtyKgForInvoice+=rec.qtyKgs;
+                    totalQtyNosForInvoice+=rec.qtyNos;
+                    recordMergedToInvoice.qtyKgs = totalQtyKgForInvoice;
+                    recordMergedToInvoice.qtyNos = totalQtyNosForInvoice;
+
+                }
+                else
+                {
+                    return false;
+                }
+            });
+            return recordMergedToInvoice;
+        };
+
+
+        updateDataForSelectedRow = function(record) {
+                var inwardNo=record.inwardNo;
+                var url = 'http://localhost:8080/Jersey-Spring-Hibernate/rest/inward/';
+                $http.put(url,record)
+                    .success(function(data) {//delete if success
+                        updateDataGrid();
+                        toastr.success('Update Success');
+                        $scope.report.selected=[];
+                    }).error(function(data){//dont if no success
+                        updateDataGrid();
+                        toastr.error("Cannot Update : Error in quantity entered for inward : "+inwardNo);
+                        $scope.report.selected=[];
+                    });
+
+        };
+
+        updateDataGrid = function() {
+            var url = 'http://localhost:8080/Jersey-Spring-Hibernate/rest/inward/inwards/all';
+            $http.get(url)
+                .success(function(data) {//delete if success
+                    $scope.exportDataVariable = data;
+                }).error(function(data){
+                });
+        };
+
+
+      $scope.clear = function(selectedRecord) {
+        $scope.report.selected=[]
+      };
+
+	})
+.directive('inwardDisplay', function() {
+  return {
+    restrict: 'E',
+    templateUrl: 'inwardDisplay.html',
+    scope: {
+      cust: '=',
+      tabHead: '=',
+    },
+    link: function(scope, elem, attrs) {
+
+       //scope.ok = function() {
+       //  console.log(scope.report.selected);
+       //};
+
+
+      // scope.clear = function(customer) {
+      //   for (var i = 0; i < scope.cust.length; i++) {
+      //     cust[i].selectedRow === false;
+      //   }
+
+      // };
+
+    }
+
+  };
+})

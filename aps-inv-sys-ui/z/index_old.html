@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html ng-app="plunker">
+
+<head> 
+  <meta charset="utf-8" />
+  <title>AngularJS Plunker</title>
+  <script data-require="jquery@*" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+  <link data-require="bootstrap@*" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+  <script data-require="bootstrap@*" data-semver="3.3.5" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>
+    document.write('<base href="' + document.location + '" />');
+  </script>
+  <script data-require="angular.js@1.2.x" src="https://code.angularjs.org/1.2.28/angular.js" data-semver="1.2.28"></script>
+  <script type="text/javascript" src="object-table.js"></script>
+  <link rel="stylesheet" type="text/css" href="object-table-style.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="app.js"></script>
+</head>
+
+<body ng-controller="MainCtrl"> 
+  <p>Hello {{name}}!</p>
+   
+ <nav-bar></nav-bar> 
+    <!--Party 
+    <input type="text" id="party" />
+    <br /> Component
+
+    <input type="text" id="component" />
+    <br /> Material
+    <input type="text" id="material" />
+    <br /> Part No
+    <input type="text" id="partNo" />
+    <br /> Process
+    <input type="text" id="process" />
+    <br /> Heat Code
+    <input type="text" id="heatCode" />
+    <br /> Furnace
+    <input type="text" id="furnace" />
+    <br /> Batch No
+    <input type="text" id="batchNo" />
+    <br /> Batch Id
+    <input type="text" id="batchId" />
+    <br /> PO No
+    <input type="text" id="poNo" />
+    <br /> PO Date
+    <input type="text" id="poDate" />
+    <br />
+    <button type="submit" class="btn btn-primary">OK</button> -->
+
+<!--<div>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+     
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+     
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      
+      
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Login <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Login</a></li>
+            <li><a href="#">Logout</a></li> 
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  </div>-->
+  
+
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs no-print" role="tablist">
+   
+    
+    <li role="presentation" class="active"><a href="#inward" aria-controls="inward" role="tab" data-toggle="tab">Inward</a></li>
+      <li role="presentation"><a data-target="#dispatch" aria-controls="dispatch" role="tab" data-toggle="tab">Dispatch</a></li>
+       <li role="presentation"><a data-target="#invoice" aria-controls="invoice" role="tab" data-toggle="tab">Invoice</a></li>
+        <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+              Add/Remove  <span class="caret"></span> 
+               </a>
+              <ul class="dropdown-menu">
+                     <li role="presentation"><a href="#party" aria-controls="party" role="tab" data-toggle="tab">Party</a></li>
+                      <li role="presentation"><a href="#component" aria-controls="component" role="tab" data-toggle="tab">Component</a></li>
+              </ul>
+      </li>
+      <li role="presentation"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">
+      <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{user}} </a></li>
+  </ul>
+   <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="dropdown">
+        
+     </ul> 
+ 
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="party"> <div> <party-input></party-input>  </div> </div>
+    <div role="tabpanel" class="tab-pane" id="component"> <div>  <component-input></component-input> </div></div>
+    <div role="tabpanel" class="tab-pane active" id="inward"><inward-display></inward-display></div>
+      <div role="tabpanel" class="tab-pane" id="dispatch"><dispatch-display></dispatch-display></div>
+       <div role="tabpanel" class="tab-pane" id="invoice"><invoice-display></invoice-display></div>
+       
+       <div role="tabpanel" class="tab-pane" id="login"><div ng-hide="flag"><login user="user" flag="false"></login></div></div>
+        
+ 
+  </div>
+
+</div>
+
+
+
+  
+</body>
+
+</html>

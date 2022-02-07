@@ -1,0 +1,71 @@
+<div class="modal-body">
+    <div class="row">
+        <form class="form-horizontal" name="newInwardForm" novalidate>
+            <fieldset>
+                <div class="col-md-3"><legend>Party Component</legend>
+
+                    <label>Party :
+                        <select name="party" id="party" ng-options="party.partyName for party in data" ng-model="partyId"
+                                ng-change="getComponentList(partyId)"></select></label><br/>
+                    <p ng-show="newInwardForm.partyId.$invalid && !newInwardForm.partyId.$pristine" class="validation-block">Party is required.</p>
+
+                    <label>Component :
+                        <select name="componentName" id="component1" ng-options="componentName.componentName for componentName in componentRecords"
+                                ng-model="selectedComponent" ng-change="printIt(selectedComponent)">
+                        </select>
+                    </label>
+                    <p ng-show="newInwardForm.selectedComponent.$invalid && !newInwardForm.selectedComponent.$pristine" class="validation-block">Party is required.</p>
+
+
+                    <label> Material : <input type="text"  ng-model="selectedComponent.material" readonly></label>
+                    <label> Part No : <input type="text"  ng-model="selectedComponent.partNo" readonly></label>
+                    <label> Process : <input type="text"  ng-model="selectedComponent.process" readonly></label>
+                    <label> PO No  : <input type="text"  ng-model="selectedComponent.poNo"></label>
+                    <label> PO Date : <input type="text"  ng-model="selectedComponent.poDate"></label>
+                    <label> Version : <input type="text" ng-model="selectedComponent.version" readonly></label>
+                    <label> Party DC : <input type="text"  ng-model="selectedComponent.partyDc"></label>
+                    <label> Party Date : <input type="text" ng-model="selectedComponent.partyDate"></label>
+                </div>
+                <div class="col-md-3"><legend>Component Specs</legend>
+                    <label> Wt/No : <input type="text" ng-model="selectedComponent.wtt" readonly></label>
+                    <label> Surface Hardness : <input type="text" ng-model="selectedComponent.surfaceHd" readonly></label>
+                    <label> Core Hardness : <input type="text" ng-model="selectedComponent.coreHd"  readonly></label>
+                    <label> Case Depth : <input type="text" ng-model="selectedComponent.caseDepth" readonly></label>
+                    <label> Microstructure : <input type="text" ng-model="selectedComponent.crack" readonly></label>
+                    <label> Distortion/Profile/Form : <input type="text" ng-model="selectedComponent.distortation" readonly></label>
+                    <label> Layer Thickness : <input type="text" ng-model="selectedComponent.layerThickness" readonly></label>
+                    <!--<label> SF : <input type="text" ng-model="selectedComponent.sf" readonly></label>-->
+                   <label> Apperance : <input type="text" ng-model="selectedComponent.apperance" readonly></label>
+                   
+                   <label> As Quench Hardness : <input type="text" ng-model="selectedComponent.asQuenchHd" readonly></label>
+                    <label> Hardness After Tempering : <input type="text" ng-model="selectedComponent.hdAfterTempering" readonly></label>
+                    <label> Partial Decarb : <input type="text" ng-model="selectedComponent.partialDecarb" readonly></label>
+                </div>
+                <div class="col-md-3"><legend>Inward Inspection</legend>
+                    <label> Inspected Qty : <input type="text" ng-model="selectedComponent.inspectedQty"></label>
+                    <label> Dent/Damage : <input type="text" ng-model="selectedComponent.damageQty"></label>
+                    <label> Surface Finish (scale/rust/oily) : <input type="text" ng-model="selectedComponent.finish"></label>
+                    <label> Distortation (bent/runout) : <input type="text" ng-model="selectedComponent.inspectedDistortation"></label>
+                    <label> Remark : <input type="text" ng-model="selectedComponent.remark"></label>
+                    <label> Cleared By : <input type="text" ng-model="selectedComponent.checkedBy"></label>
+                </div>
+                <div class="col-md-3"><legend>Quantity and Rate</legend>
+                    <label>Recieved Qty Kgs :
+                        <input type="number" ng-model="selectedComponent.qtyKgs" placeholder="Required" required>
+                        <p ng-show="selectedComponent.qtyNos.$invalid && !selectedComponent.qtyNos.$pristine" class="validation-block">Quantity in Nos is required.</p>
+                    </label>
+                    <label>Recieved Qty Nos :
+                        <input type="number" ng-model="selectedComponent.qtyNos" placeholder="Required" required>
+                        <p ng-show="selectedComponent.qtyKgs.$invalid && !selectedComponent.qtyKgs.$pristine" class="validation-block">Quantity in Kgs is required.</p>
+                    </label>
+                    <label> Rate Kg : <input type=number ng-model="selectedComponent.rateKg" required readonly></label>
+                    <label> Rate No : <input type=number ng-model="selectedComponent.rateNos" required readonly></label>
+                    <label>
+                        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="newInwardForm.$invalid" ng-hide="edit">Save to Inward</button></label>
+                    <label><button type="button" class="btn btn-primary" ng-click="update()" ng-disabled="newInwardForm.$invalid" ng-show="edit">Update to Inward</button>
+                    </label>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

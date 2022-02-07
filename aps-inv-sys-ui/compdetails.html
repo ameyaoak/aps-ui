@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-xs-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <big> Component Details</big>
+
+            </div>
+            <div class="panel-body">
+
+                <table>
+                    <tr>
+                        <td>Party: {{inv.partyName}}</td>
+                    </tr>
+                    <tr>
+                        <td>Component: {{inv.component}}</td>
+                    </tr>
+                    <tr>
+                        <td>Part No: {{inv.partNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Material: {{inv.material}}</td>
+                    </tr>
+                    <tr>
+                        <td>Batch Id: {{inv.batchId}}</td>
+                    </tr>
+                    <tr>
+                        <td>Qty Nos: {{inv.qtyNosTC}}</td>
+                        <td>Qty Kgs: {{inv.kgsNosTC}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Inspected By: {{inv.invoiceWorker}}</td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6  text-left">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <big> Process Details</big>
+
+            </div>
+            <div class="panel-body">
+                <table>
+                    <tr>
+                        <td>Ref Std. / WI /TDS No: {{inv.tdsNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Heat Code/RC No: {{inv.heatCode}}</td>
+                    </tr>
+                    <tr>
+                        <td>Furnace Batch No: {{inv.batchNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>Furnace : {{inv.furnace}}</td>
+                    </tr>
+                    <tr>
+                        <td>APS DC No:{{inv.apsDCNo}}</td>
+                    </tr>
+                    <tr>
+                        <td>APS DC Date: {{inv.apsDCDate}}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Approved By: {{inv.invoiceWorker}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-xs-12 text-left">
+
+        <div style="float:left;">
+            <!-- Case Depth by Zwick make Microhardness Tester-->
+            <div class="empty " file-dropzone="[image/png, image/jpeg, image/gif]" file="image" file-name="imageFileName" data-max-file-size="3">
+                Micro Photo
+            </div>
+
+
+            <div class="image-container" >
+                <img class="microPic" ng-src={{image}} />{{imageFileName}}
+                <span class="file-name">{{imageFileName}}</span>
+            </div>
+            400X 2% Nital
+        </div>
+        <div style="float:right;">
+            <chart config="chartConfig"></chart>
+        </div>
+        <!-- <div ng-hide={{inv.microPic}}>
+                <div class="image-container">
+                  <img class="microPic" ng-src={{image}} />
+                  <span class="file-name">{{imageFileName}}</span>
+
+              <div ng-hide="{{image}}">
+                <img class="microPic" src={{inv.microPic}}>
+              </div>-->
+
+        <!-- <img class="microGraph" src={{inv.microGraph}}>-->
+        <table class="table table-bordered table-condensed">
+            <tr>
+            </tr>
+            <tr>
+                <td>Load</td>
+                <th>MM</th>
+                <td ng-repeat="mmData in inv.microGrid.mm track by $index">{{mmData}}</td>
+            </tr>
+            <tr>
+                <td>{{inv.microLoad}}</td>
+                <th>HV</th>
+                <td ng-repeat="hvData in inv.microGrid.hv track by $index">{{hvData}}</td>
+            </tr>
+            <tr>
+                <td>{{inv.microLoad}}</td>
+                <th>Cut</th>
+                <td ng-repeat="cutData in inv.microGrid.cut track by $index">{{cutData}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+/* Put your css in here */
+
+/* @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+ body, h1, h2, h3, h4, h5, h6 {
+     font-family:'Bree Serif', serif; } */
+      
+
+@media print {
+   .no-print{
+        display:none;
+    } 
+}
+.navbar-default {
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
+}
+
+.microPic{max-width:120px; max-height:120px;} 
+.microGraph{max-width:450px; max-height:200px;}
+
+/*.dropzone {*/
+ /*max-width:180px; max-height:180px;*/
+  /*border: 1px solid #2165a3;*/
+  /*text-align: center;*/
+  /*padding: 30px; */
+  /*margin: 20px;*/
+  /*font-family: Arial;*/
+/*}*/
+
+/*.image-container {*/
+    /*max-width:200px; max-height:200px;padding-left:5px;padding-right:5px;*/
+/*}*/
+
+.dropzone {
+    width: 10px;
+    height: 50px;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    font-family: Arial;
+}
+
+.image-container {
+    width: 200px;
+    height: 200px;
+}
+
+.image-container img {
+    max-width:200px;
+    max-height:200px;
+}
+
+.file-name {
+    font-family: Arial;
+}
+
+#container{
+  float:default;
+   max-width:180px; max-height:180px;
+}
+ 
+.empty {
+  right: 15px;
+  width: 100px!important;
+  padding: 2px!important;
+  margin: 0!important; 
+}
+ 
+ .navbar-custom {
+    color: #FFFFFF;
+    background-color: #CC3333;
+}
+
+ .validation-block{
+     color : red;
+     background-color: #CC3333;
+ }

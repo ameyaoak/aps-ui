@@ -1,0 +1,433 @@
+<div>
+    <div class="btn primary large no-print">Hello {{name}}!</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-8">
+                <h1>
+                    <img src="externalFiles/logo.gif">
+                    APS HEAT TREATERS
+                </h1> Gat no. 263, Post Pirangut, Tal. Mulshi, Dist. Pune 412115
+                <br>Phone- (+91) 9767893609 | E-Mail : apsheat@gmail.com
+                <br><b>GSTIN : 27ADLPS5295B1Z7</b>
+                <br>
+
+            </div>
+            <div class="col-xs-4 text-right">
+                <h3>TAX
+                    INVOICE</h3> Invoice No.<big><b>{{inv.invoiceNo}}</b></big>
+                <br>Date : <big><b>{{inv.creationDate}}</b></big>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="row">
+            <div class="col-xs-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <big> <b>Part Details</b></big>
+                    </div>
+                    <div class="panel-body">
+
+                        <table>
+                            <tr ng-hide="component.componentName == 'NA'">
+                                <td>Part Name : <b>{{component.componentName}}</b></td>
+                            </tr>
+                            <tr ng-hide="component.partNo == 'NA'">
+                                <td>Part No : <b>{{component.partNo}}</b></td>
+                            </tr>
+                            <tr ng-hide="component.material == 'NA'">
+                                <td>Material : <b>{{component.material}}</b></td>
+                            </tr>
+                            <tr ng-hide="component.process == 'NA'">
+                                <td>Heat Treatment : <b>{{component.process}}</b></td>
+                            </tr>
+                            <tr ng-hide="inv.testCertificate.heatCode == 'NA'">
+                                <td>Heat Code : <b>{{inv.testCertificate.heatCode}}</b></td>
+                            </tr>
+                            <tr ng-hide="inv.testCertificate.batchNo == 'NA'">
+                                <td>Furnace Batch No : <b>{{inv.testCertificate.batchNo}}</b></td>
+                            </tr>
+                            <tr ng-hide="inv.testCertificate.batchId == 'NA'">
+                                <td>Batch Id : <b>{{inv.testCertificate.batchId}}</b></td>
+                            </tr>
+                            <tr ng-hide="poNo === 'NA'">
+                                <td>PO No : <b>{{poNo}}</b></td>
+                            </tr>
+                            <tr ng-hide="poDate === 'NA'">
+                                <td>PO Date : <b>{{poDate}}</b></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5  text-left">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <big> <b> Party Billing and Shipping Details </b> </big> 
+
+                    </div>
+                    <div class="panel-body">
+                        <p>Party Name : <b>{{party.partyName}}</b></p>
+
+                        <p>Party Address : {{party.partyAddress}}</p>
+
+                        <p>Phone : <b>{{party.partyPhone}}</b></p>
+
+                        <p>E-Mail : <b>{{party.partyEmail}}</b></p>
+                        <p>State : <b>{{party.partyState}}</b>&nbsp;State Code : <b>{{party.partyStateCode}}</b></p>
+                        <p>GSTIN No : <b>{{party.partyGst}}</b></p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- / end client details section -->
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th class="text-center">Sr No</th>
+                    <th class="text-center">Inward No</th>
+                    <th class="text-center">Party DC No</th>
+                    <th class="text-center">Party DC Date</th>
+                    <th class="text-center">Qty/Kg</th>
+                    <th class="text-center">Rate/Kg</th>
+                    <th class="text-center">Qty/Nos</th>
+                    <th class="text-center">Rate/Nos</th>
+                    <th class="text-center">Taxable Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+ 
+            <!--<tr ng-repeat="data in inv.invGrid">-->
+            <tr>
+                <td class="text-center">1</td>
+                <td class="text-center">{{inv.inwardNo}}</td>
+                <td class="text-center">{{partyDc}}</td>
+                <td class="text-center">{{partyDate}}</td>
+                <td class="text-center">{{inv.qtyKgs}}</td>
+                <td class="text-center">{{inv.rateKg}}</td>
+                <td class="text-center">{{inv.qtyNos}}</td>
+                <td class="text-center">{{inv.rateNos}}</td>
+                <td class="text-center">{{inv.amount}}</td>
+            </tr>
+            <!--</tr>--> 
+            </tbody>
+        </table>
+
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th class="text-center">CGST ({{gstRate}}%) under SAC 998898 </th>
+                    <th class="text-center">SGST ({{gstRate}}%) under SAC 998898 </th>
+                    <th class="text-center">Total Tax</th>
+                </tr>
+            </thead>
+            <tbody>
+ 
+            <!--<tr ng-repeat="data in inv.invGrid">-->
+            <tr>
+                <td class="text-center">{{inv.cgst}}</td>
+                <td class="text-center">{{inv.sgst}}</td>
+                <td class="text-center">{{inv.tax}}</td>
+            </tr>
+            <!--</tr>-->
+ 
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <big> In words: <b>{{inv.inWords}}</b></big>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-4  ">
+                <div class="span7">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                               <big> Total Invoice Amount:<b> {{inv.total}}</b> </big>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Recipient details
+
+                    </div>
+                    <div class="panel-body">
+                        <p>Received the above mentioned material as per order in good condition.
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+
+                            <br>Receiver's signature
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-5 text-left">
+                <div class="span7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Job Work Charges Only
+
+                        </div>
+                        <div class="panel-body">
+                            <p>For APS Heat Treaters
+
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>
+                                <br>Signature {{inv.invoiceWorker}}
+
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+		<div class="row">
+		<div class="col-xs-12">
+		* Tax invoice cum delivery challan<br>
+		* We are a MSME registered unit, which mandates payment terms not more than 45 days from invoice date, failing which we are entitled to recover compound interest from the buyer. 
+		  UDYAM (MSME) Registration number - UDYAM-MH-26-0086677
+		<br>
+		* Please note, no claim will be entertained after 5 days from date of receipt of material, in respect of any discrepancies with regards to quality or quantity.
+		<br><br>
+		<b>Bank details: </b>ICICI Bank Bhandarkar Road Pune, Account No- 777705020366, IFSC- ICIC0006240
+		<!-- <br><b>UPI: </b> 9822060240@upi -->
+		</div>
+		<br><br>
+		<div class="row">
+		<div class="col-xs-12 text-right">
+			APS/F/06/R01
+		</div>
+		
+
+    </div>
+
+    <a href="javascript:window.print()" class="btn primary large no-print">
+        Print</a>
+</div>
+
+<div id="tc" style="page-break-before: always">
+    <!--<div class="btn primary large no-print">Hello {{name}}!</div>-->
+    <div class="container" style="font-size: 16px;">
+        <div class="row">
+            <div class="col-xs-8">
+                <h3>
+                    <img src="externalFiles/logo.gif"
+                         style="width:70px;height:30px;">
+                    APS HEAT TREATERS
+                </h3> Gat no. 263, Post Pirangut, Tal. Mulshi, Dist. Pune 412115
+                <br>Phone-(+91) 9767893609 | E-Mail : apsheat@gmail.com
+
+            </div>
+            <div class="col-xs-4 text-right">
+                <h3> METALLURGICAL TEST REPORT</h3> Report No.<big><b>{{inv.invoiceNo}}</b></big>
+                <br>Date :<big><b> {{inv.creationDate}}</b></big>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-xs-6">
+                <div>
+                    <div>
+                        <!--<b style="font-size: 15px;border-bottom: 1px solid"> Component Details</b>-->
+
+                        <div>
+                            Party : <b>{{party.partyName}}</b>
+                        </div>
+                        <div>
+                            Part Name : <b>{{component.componentName}}</b>
+                        </div>
+                        <div>
+                            Part No : <b>{{component.partNo}}</b>
+                        </div>
+                        <div>
+                            Material : <b>{{component.material}}</b>
+                        </div>
+                        <div>
+                            Inward No : <b>{{inv.inwardNo}}</b> Batch Id : <b>{{inv.testCertificate.batchId}}</b>
+                        </div>
+                        <div>
+                            Qty Nos : <b>{{inv.qtyNos}}</b> Qty Kgs : <b>{{inv.qtyKgs}}</b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6  text-left">
+                <div>
+
+                    <div>
+                        <!--<b style="font-size: 15px;border-bottom: 1px solid"> Process Details</b>-->
+
+                        <div ng-hide="component.process == 'NA'">
+                            Heat Treatment : <b>{{component.process}}</b>
+                        </div>
+                        <div ng-hide="inv.testCertificate.furnace == 'NA'">
+                            Furnace : <b>{{inv.testCertificate.furnace}}</b>
+                        </div>
+                        <div ng-hide="inv.testCertificate.refStd == 'NA'">
+                            Ref Std / WI / Drg /TDS No: <b>{{inv.testCertificate.refStd}}</b>
+                        </div>
+                        <div ng-hide="inv.testCertificate.heatCode == 'NA'">
+                            Heat Code/RC No/WO No: <b>{{inv.testCertificate.heatCode}}</b>
+                        </div>
+                        <div ng-hide="inv.testCertificate.batchNo == 'NA'">
+                            Furnace Batch No: <b>{{inv.testCertificate.batchNo}}</b>
+                        </div>
+
+                        <div>
+                            APS DC No : <b>{{inv.invoiceNo}}</b> APS DC Date : <b>{{inv.creationDate}}</b>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <!-- / end client details section -->
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-bordered table-condensed table-striped" ng-show="inv.testCertificate.gridRows.length">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">
+                                Particulars
+                            </th>
+                            <th style="width: 5%;">
+                                Test Location
+                            </th>
+                            <th style="width: 10%;">
+                                Test Method
+                            </th>
+                            <th style="width: 5%;">
+                                Checked Qty Nos
+                            </th>
+                            <th style="width: 30%;">
+                                Specification
+                            </th>
+                            <th style="width: 30%;">
+                                Observations
+                            </th>
+                            <!--<th style="width: 10%;">
+                            Remarks
+                        </th>-->
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr ng-repeat="data in inv.testCertificate.gridRows | orderBy:'gridRowId'">
+                            <td class="text-left">{{data.particular}}</td>
+                            <td class="text-left">{{data.testLocation}}</td>
+                            <td class="text-left">{{data.testMethod}}</td>
+                            <td class="text-center">{{data.qty}}</td>
+                            <td class="text-left">{{data.actuals}}</td>
+                            <td class="text-left">{{data.observation}}</td>
+                            <!--<td class="text-left">{{data.remark}}</td>-->
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+        
+        <input type="checkbox" checked="checked" ng-model="graph" class="no-print" value="Graph">
+            <!--<div class="col-xs-2">-->
+            <!--<div class="dropzone no-print" file-dropzone="[image/png, image/jpeg, image/gif]"-->
+            <!--file="image" file-name="imageFileName" data-max-file-size="3">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-xs-5">-->
+            <!--<div class="image-container">-->
+            <!--<img ng-src={{image}} />-->
+            <!--<span class="file-name">{{imageFileName}}</span>-->
+            <!--</div>-->
+            <!--</div>--> 
+            <div class="col-xs-10" ng-show="graph">
+                <div style="float:left;">
+                    <chart config="chartConfig"></chart>
+                </div>
+            </div>
+            <!-- <div ng-hide={{inv.microPic}}>
+                        <div class="image-container">
+                          <img class="microPic" ng-src={{image}} />
+                          <span class="file-name">{{imageFileName}}</span>
+
+                      <div ng-hide="{{image}}">
+                        <img class="microPic" src={{inv.microPic}}>
+                      </div>-->
+
+            <!-- <img class="microGraph" src={{inv.microGraph}}>-->
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-left">
+                <b>Remark : </b> Results are as per specification.
+            </div>
+            <div class="col-xs-12 text-left">
+                <div class="col-xs-8 text-left">
+                    <br><br>
+                    <br><br>       
+                    <br> Checked By: <b>{{inv.testCertificate.inspectedBy}}</b>
+                </div>
+
+                <div class="col-xs-4 text-left">
+                    <br><br>
+                    <br><br>        
+                    <br> Approved By : <b>{{inv.testCertificate.approvedBy}}</b>
+                    <div style="text-align:right">APS/F/05/R00</div>
+                </div>
+                <!-- <table class="table table-bordered table-condensed">
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td>Load</td>
+                        <th>MM</th>
+                        <td ng-repeat="mmData in inv.testCertificate.mm track by $index">{{mmData}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{inv.testCertificate.loadVal}}</td>
+                        <th>HV</th>
+                        <td ng-repeat="hvData in inv.testCertificate.hv track by $index">{{hvData}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th>Cut Off</th>
+                        <td ng-repeat="cutData in inv.testCertificate.cut track by $index">{{cutData}}</td>
+                    </tr>
+                    </tbody>
+                </table>-->
+            </div>
+            
+        </div>
+        <!--<div class="text-center"><big>Final Disposition : {{inv.testCertificate.finalDisposition}}</big>-->
+
+    </div>
+</div>
+
+<a href="javascript:window.print()" class="btn primary large no-print">
+    Print</a>
+</div>

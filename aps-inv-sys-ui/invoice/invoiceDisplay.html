@@ -1,0 +1,44 @@
+<div>
+    <button ng-click="report()" class="btn btn-primary">Make Report
+    </button>
+    <button ng-click="clear()" class="btn btn-default">Clear</button>
+    <button ng-click="tcForRec()" class="btn btn-link">{{invoice_button1}}</button>
+    <button ng-click="delInvoice()" class="btn btn-link">Delete</button>
+</div>
+<div>
+    <h4>Invoice Details</h4>
+    <div>
+        <div>
+            <table object-table="" from-url={{invoice_fromdata}} data="exportDataVariable" display="30" 
+            headers={{invoice_headers}} fields={{invoice_fields}} sorting="compound" editable="false" resize="true" 
+            drag-columns="true" selected-model="report.selected" select="single">
+                <tbody>
+                    <tr>
+                        <td>{{item.creationDate}}</td>
+                        <td>{{item.invoiceNo}}</td>
+                        <td>{{item.dispatchNo}}</td>
+                        <td>{{item.inwardNo}}</td>
+                        <td>{{item.party}}</td>
+                        <td>{{item.partyDc}}</td>
+                        <td>{{item.partyDate}}</td>
+                        <td>{{item.componentName}}</td>
+                        <td>{{item.material}}</td>
+                        <td>{{item.partNo}}</td>
+                        <td>{{item.process}}</td>
+                        <td>{{item.qtyKgs}}</td>
+                        <td>{{item.qtyNos}}</td>
+                        <td>{{item.rateKg}}</td>
+                        <td>{{item.rateNos}}</td> 
+                        <td>{{item.taxableAmount}}</td>
+                        <td>{{item.cgst}}</td>
+                        <td>{{item.sgst}}</td>
+                        <td>{{item.totalTax}}</td>
+                        <td>{{item.total}}</td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>

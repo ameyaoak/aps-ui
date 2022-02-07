@@ -1,0 +1,99 @@
+<div class="modal-body">
+    <div class="row">
+        <form name="partyForm" novalidate>
+            <fieldset>
+                <div class="col-md-3">
+                    <legend>Party Details</legend>
+                    <div class="controls">
+                        <label class="checkbox">
+                            Edit Party <input type="checkbox" ng-model="editParty">
+                        </label>
+                        <span class="help-block">Select edit checkbox to edit party.</span>
+
+                        <label>
+                            Party : <select name="party.partyName" id="party.partyName"
+                                           ng-options="party.partyName for party in parties track by party.partyId"
+                                           ng-model="party.selectedOption" ng-show="editParty"></select>
+                            <input name="partyName" type="text" ng-model="party.selectedOption.partyName"
+                                   ng-hide="editParty" required>
+                        </label>
+                        <p ng-show="partyForm.partyName.$invalid && !partyForm.partyName.$pristine"
+                           class="validation-block">Name is required.</p>
+
+                        <label>
+                            Address : <input type="text" name="partyAddress"
+                                             ng-model="party.selectedOption.partyAddress" required>
+                        </label>
+                        <p ng-show="partyForm.partyAddress.$invalid && !partyForm.partyAddress.$pristine"
+                           class="validation-block">Address is required.</p>
+
+                        <label>
+                            Phone : <input type="text" name="partyPhone" ng-model="party.selectedOption.partyPhone"
+                                           required></label>
+                        <!--<p ng-show="partyForm.partyPhone.$invalid && !partyForm.partyPhone.$pristine" class="validation-block">Phone is required.</p>-->
+
+                        <label>
+                            Mail : <input type="email" name="partyEmail" ng-model="party.selectedOption.partyEmail"
+                                          required></label>
+                        <p ng-show="partyForm.partyEmail.$invalid && !partyForm.partyEmail.$pristine"
+                           class="validation-block">Mail is required.</p>
+
+                        <label>
+                            Supplier Code : <input type=text name="supplierCode"
+                                                   ng-model="party.selectedOption.partySupplierCode" required></label>
+                        <p ng-show="partyForm.supplierCode.$invalid && !partyForm.supplierCode.$pristine"
+                           class="validation-block">Supplier Code is required.</p>
+
+                        <label>
+                            State : <input type=text name="partyState"
+                                                   ng-model="party.selectedOption.partyState" required></label>
+                        <p ng-show="partyForm.partyState.$invalid && !partyForm.partyState.$pristine"
+                           class="validation-block">State is required.</p>
+
+                        <label>
+                            State Code : <input type=text name="partyStateCode"
+                                                   ng-model="party.selectedOption.partyStateCode" required></label>
+                        <p ng-show="partyForm.partyStateCode.$invalid && !partyForm.partyStateCode.$pristine"
+                           class="validation-block">State Code is required.</p>
+
+                        <label>
+                            GST Number : <input type=text name="partyGst"
+                                                   ng-model="party.selectedOption.partyGst" required></label>
+                        <p ng-show="partyForm.partyGst.$invalid && !partyForm.partyGst.$pristine"
+                           class="validation-block">GST Number is required.</p>
+
+                        <button type="button" class="btn btn-primary" ng-click="update()"
+                                ng-disabled="partyForm.$invalid" ng-show="editParty">Update Party
+                        </button>
+                        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="partyForm.$invalid"
+                                ng-hide="editParty">Save Party
+                        </button>
+                    </div>
+
+
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+
+<!-- 
+        <tr><td>Total : </td><td><input style="width:40%;" name="finalTotal" placeholder="6546">
+        <tr><td> Words : </td><td><input  style="width:40%;" name="finalTotalWords" placeholder="six thousand five hundred and fourty six">
+         
+        <tr><td></td><td><input style="width:40%;" name="invoiceWorker" placeholder="login">
+        
+      
+        
+      
+         
+        <input name="mm" ng-model="microGrid.mm">
+        <input name="cut" ng-model="microGrid.cut">
+        <input name="hv" ng-model="microGrid.hv">
+      
+      
+        <input name="microPic" placeholder="http://img3.bagit.in/0//images/product/00/00/00/03/04/28/30428/SanDisk-Micro-SD-Memory-Card-Mobile-Ultra-32-GB-Class-10-01.jpg">
+        <input name="microGraph" placeholder="http://www.clipart-box.com/zoom/diagram-graph120404.jpg">
+        <input name="microLoad" placeholder="34">  -->
+
+ 
